@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package configaudit;
+
+option go_package = "github.com/Shyyw1e/echelon-technologies-test/internal/grpcapi";
+
+service AnalyzerService {
+  rpc Analyze(AnalyzeRequest) returns (AnalyzeResponse);
+}
+
+message AnalyzeRequest {
+  bytes content = 1;
+  string source_name = 2;
+}
+
+message AnalyzeResponse {
+  repeated Issue issues = 1;
+}
+
+message Issue {
+  string severity = 1;
+  string rule = 2;
+  string message = 3;
+  string recommendation = 4;
+  string path = 5;
+  string source = 6;
+}
